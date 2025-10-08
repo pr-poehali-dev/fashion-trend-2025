@@ -62,9 +62,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				gold: 'hsl(var(--gold))',
-				pink: 'hsl(var(--pink))',
-				brown: 'hsl(var(--brown))'
+				green: 'hsl(var(--green))',
+				gray: 'hsl(var(--gray))',
+				'light-gray': 'hsl(var(--light-gray))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
