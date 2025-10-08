@@ -3,34 +3,68 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [selectedBrand, setSelectedBrand] = useState<any>(null);
+  const [selectedShow, setSelectedShow] = useState<any>(null);
+  const [selectedCollection, setSelectedCollection] = useState<any>(null);
 
   const brands = [
     {
       name: 'Rick Owens',
       description: 'Темная эстетика и авангардные силуэты, которые взорвали индустрию в 2024-2025',
       trend: 'DARK LUXE',
-      year: '2024-2025'
+      year: '2024-2025',
+      founder: 'Рик Оуэнс',
+      founded: '1994',
+      story: 'Американский дизайнер, создавший культовый бренд темной роскоши. Его коллекции отличаются драматическими силуэтами, монохромной палитрой и авангардным подходом к streetwear.',
+      signature: 'Массивная обувь, длинные драпировки, готическая эстетика',
+      collections: ['EDFU FW24', 'TECUATL SS25', 'GETHSEMANE'],
+      keyPieces: ['Ramones Sneakers', 'DRKSHDW Denim', 'Длинные пальто с капюшонами']
     },
     {
       name: 'Maison Margiela',
       description: 'Деконструкция классики и артистичный подход к дизайну',
       trend: 'DECONSTRUCTED',
-      year: '2024-2025'
+      year: '2024-2025',
+      founder: 'Мартин Марджела',
+      founded: '1988',
+      story: 'Легендарный бельгийский дизайнер-концептуалист, который всегда оставался в тени. Бренд известен деконструкцией одежды и артистичным подходом к fashion.',
+      signature: 'Белые маски, Tabi boots, деконструированные силуэты',
+      collections: ['Artisanal Collection', 'Co-Ed Collection', 'Replica'],
+      keyPieces: ['Tabi Boots', 'Replica Sneakers', 'Деконструированные пиджаки']
     },
     {
       name: 'Balenciaga',
       description: 'Футуристичный стиль и инновационный подход к streetwear',
       trend: 'FUTURE NOW',
-      year: '2024-2025'
+      year: '2024-2025',
+      founder: 'Кристобаль Баленсиага (сейчас Демна Гвасалия)',
+      founded: '1919',
+      story: 'Исторический модный дом, который под руководством Демны Гвасалии стал символом футуристического luxury streetwear и вирусных трендов.',
+      signature: 'Экстремальные пропорции, футуристичные аксессуары, логотипы',
+      collections: ['Le Cagole', 'Triple S Era', 'Couture Collection'],
+      keyPieces: ['Triple S Sneakers', 'Le Cagole Bag', 'Oversized Hoodies']
     },
     {
       name: 'The Row',
       description: 'Минималистичная роскошь от сестер Олсен',
       trend: 'QUIET LUXURY',
-      year: '2024-2025'
+      year: '2024-2025',
+      founder: 'Мэри-Кейт и Эшли Олсен',
+      founded: '2006',
+      story: 'Бренд премиум-минимализма от легендарных сестер Олсен. The Row представляет концепцию "quiet luxury" - роскоши без логотипов и лишних деталей.',
+      signature: 'Безупречный крой, качественные материалы, минимализм',
+      collections: ['Essentials', 'Timeless Wardrobe', 'Capsule Collection'],
+      keyPieces: ['Margaux Bag', 'Cashmere Coats', 'Строгие брюки']
     }
   ];
 
@@ -39,19 +73,37 @@ const Index = () => {
       designer: 'Rick Owens',
       season: 'FW 2024',
       location: 'Paris Fashion Week',
-      highlight: 'Драматические силуэты с элементами готики и футуризма'
+      highlight: 'Драматические силуэты с элементами готики и футуризма',
+      date: 'Январь 2024',
+      venue: 'Palais de Tokyo',
+      details: 'Шоу проходило в атмосфере индустриальной готики. Модели шли по подиуму в длинных черных пальто с капюшонами, массивной обуви и драпированных платьях. Центральной темой стала игра света и тени.',
+      looks: 42,
+      music: 'Ambient Industrial',
+      keyLooks: ['Look 1: Черное драпированное пальто', 'Look 15: Массивные Ramones', 'Look 28: Готический вечерний наряд']
     },
     {
       designer: 'Maison Margiela',
       season: 'SS 2025',
       location: 'Paris Haute Couture',
-      highlight: 'Артхаус деконструкция с белыми масками'
+      highlight: 'Артхаус деконструкция с белыми масками',
+      date: 'Июль 2024',
+      venue: 'Théâtre des Bouffes du Nord',
+      details: 'Легендарное шоу с культовыми белыми масками. Модели представили деконструированные пиджаки, асимметричные платья и переосмысленную классику. Зал был в полной темноте с точечным освещением.',
+      looks: 38,
+      music: 'Experimental Classical',
+      keyLooks: ['Look 5: Деконструированный костюм', 'Look 12: Белая маска с драпировкой', 'Look 22: Асимметричное платье']
     },
     {
       designer: 'Balenciaga',
       season: 'FW 2024',
       location: 'Paris Fashion Week',
-      highlight: 'Экстремальные пропорции и футуристичные аксессуары'
+      highlight: 'Экстремальные пропорции и футуристичные аксессуары',
+      date: 'Март 2024',
+      venue: 'Parc des Expositions',
+      details: 'Футуристичное шоу с гипертрофированными силуэтами и инновационными материалами. Модели представили oversized худи, массивные сумки и обувь платформе. Демна Гвасалия вновь удивил модный мир.',
+      looks: 51,
+      music: 'Electronic Techno',
+      keyLooks: ['Look 7: Triple S в новой расцветке', 'Look 19: Гигантская Le Cagole', 'Look 34: Футуристичное пальто']
     }
   ];
 
@@ -83,19 +135,49 @@ const Index = () => {
       brand: 'Rick Owens',
       name: 'EDFU Collection',
       pieces: 'Длинные пальто, драпировки, массивная обувь',
-      appeal: 'Для тех, кто ценит темную эстетику'
+      appeal: 'Для тех, кто ценит темную эстетику',
+      season: 'FW 2024',
+      priceRange: '$500 - $5,000',
+      fullDescription: 'Коллекция EDFU вдохновлена египетской архитектурой и готическими соборами. Массивные силуэты сочетаются с тонкими драпировками, создавая контраст между весом и легкостью.',
+      items: [
+        { name: 'Черное пальто с капюшоном', price: '$2,890' },
+        { name: 'Ramones Sneakers', price: '$790' },
+        { name: 'Драпированное платье', price: '$1,450' },
+        { name: 'DRKSHDW Denim', price: '$540' }
+      ],
+      targetAudience: 'Для смелых личностей, ценящих авангард и темную эстетику'
     },
     {
       brand: 'Maison Margiela',
       name: 'Artisanal Collection',
       pieces: 'Деконструированные пиджаки, Tabi boots, белые маски',
-      appeal: 'Искусство в каждой детали'
+      appeal: 'Искусство в каждой детали',
+      season: 'SS 2025',
+      priceRange: '$800 - $8,000',
+      fullDescription: 'Artisanal Collection - это вершина деконструктивизма в моде. Каждая вещь создана вручную, переосмысляя классические формы и разрушая границы между одеждой и искусством.',
+      items: [
+        { name: 'Tabi Boots', price: '$1,290' },
+        { name: 'Деконструированный пиджак', price: '$3,450' },
+        { name: 'Replica Sneakers', price: '$590' },
+        { name: 'Асимметричное платье', price: '$2,890' }
+      ],
+      targetAudience: 'Для ценителей искусства и концептуальной моды'
     },
     {
       brand: 'The Row',
       name: 'Minimalist Essentials',
       pieces: 'Безупречные пальто, строгие брюки, качественный кашемир',
-      appeal: 'Вечная элегантность без возраста'
+      appeal: 'Вечная элегантность без возраста',
+      season: 'FW 2024',
+      priceRange: '$1,200 - $15,000',
+      fullDescription: 'Коллекция Minimalist Essentials воплощает философию "quiet luxury". Безупречный крой, роскошные материалы и вневременной дизайн делают каждую вещь инвестицией на десятилетия.',
+      items: [
+        { name: 'Cashmere пальто', price: '$5,990' },
+        { name: 'Margaux Bag', price: '$6,500' },
+        { name: 'Шелковая блуза', price: '$1,890' },
+        { name: 'Строгие брюки', price: '$1,250' }
+      ],
+      targetAudience: 'Для всех, кто ценит качество и вечную элегантность'
     }
   ];
 
@@ -238,6 +320,7 @@ const Index = () => {
                   <Button 
                     variant="outline" 
                     className="mt-6 border-gold text-gold hover:bg-gold hover:text-black"
+                    onClick={() => setSelectedBrand(brand)}
                   >
                     Узнать больше
                   </Button>
@@ -278,9 +361,15 @@ const Index = () => {
                     <Icon name="MapPin" size={16} />
                     {show.location}
                   </p>
-                  <p className="text-black/80 leading-relaxed">
+                  <p className="text-black/80 leading-relaxed mb-4">
                     {show.highlight}
                   </p>
+                  <Button 
+                    className="w-full bg-black text-white hover:bg-pink transition-all"
+                    onClick={() => setSelectedShow(show)}
+                  >
+                    Подробнее о показе
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -359,6 +448,7 @@ const Index = () => {
                     <Button 
                       size="lg"
                       className="bg-black text-white hover:bg-pink transition-all duration-300"
+                      onClick={() => setSelectedCollection(collection)}
                     >
                       СМОТРЕТЬ
                     </Button>
@@ -439,6 +529,192 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <Dialog open={!!selectedBrand} onOpenChange={() => setSelectedBrand(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-black border-gold">
+          {selectedBrand && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-4xl font-bold text-gold mb-2">
+                  {selectedBrand.name}
+                </DialogTitle>
+                <DialogDescription className="text-white/70 text-lg">
+                  Основан: {selectedBrand.founded} | {selectedBrand.founder}
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-6 mt-6">
+                <div>
+                  <Badge className="mb-3 bg-pink text-white">{selectedBrand.trend}</Badge>
+                  <p className="text-white/90 text-lg leading-relaxed">
+                    {selectedBrand.story}
+                  </p>
+                </div>
+
+                <div className="bg-white/5 rounded-lg p-6 border border-gold/30">
+                  <h4 className="text-xl font-bold text-gold mb-3 flex items-center gap-2">
+                    <Icon name="Crown" size={20} />
+                    Фирменный стиль
+                  </h4>
+                  <p className="text-white/80">
+                    {selectedBrand.signature}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-white mb-4">Ключевые коллекции</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {selectedBrand.collections.map((coll: string, idx: number) => (
+                      <div key={idx} className="bg-white/5 rounded-lg p-4 border border-gold/20">
+                        <p className="text-white font-medium">{coll}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-white mb-4">Культовые вещи</h4>
+                  <ul className="space-y-2">
+                    {selectedBrand.keyPieces.map((piece: string, idx: number) => (
+                      <li key={idx} className="text-white/80 flex items-center gap-2">
+                        <Icon name="Check" size={16} className="text-gold" />
+                        {piece}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!selectedShow} onOpenChange={() => setSelectedShow(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white">
+          {selectedShow && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-4xl font-bold text-black mb-2">
+                  {selectedShow.designer} {selectedShow.season}
+                </DialogTitle>
+                <DialogDescription className="text-black/70 text-lg">
+                  {selectedShow.location} • {selectedShow.date}
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-6 mt-6">
+                <div className="bg-gradient-to-r from-gold/20 to-pink/20 rounded-lg p-6">
+                  <h4 className="text-xl font-bold text-black mb-3 flex items-center gap-2">
+                    <Icon name="Sparkles" size={20} />
+                    Главная особенность
+                  </h4>
+                  <p className="text-black/80 text-lg">
+                    {selectedShow.highlight}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-black mb-3">О показе</h4>
+                  <p className="text-black/70 leading-relaxed">
+                    {selectedShow.details}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div className="bg-black/5 rounded-lg p-4">
+                    <p className="text-sm text-black/60 mb-1">Место проведения</p>
+                    <p className="text-black font-semibold">{selectedShow.venue}</p>
+                  </div>
+                  <div className="bg-black/5 rounded-lg p-4">
+                    <p className="text-sm text-black/60 mb-1">Образов показано</p>
+                    <p className="text-black font-semibold">{selectedShow.looks} looks</p>
+                  </div>
+                  <div className="bg-black/5 rounded-lg p-4">
+                    <p className="text-sm text-black/60 mb-1">Музыка</p>
+                    <p className="text-black font-semibold">{selectedShow.music}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-black mb-4">Ключевые образы</h4>
+                  <ul className="space-y-3">
+                    {selectedShow.keyLooks.map((look: string, idx: number) => (
+                      <li key={idx} className="flex items-start gap-3 p-3 bg-gold/10 rounded-lg">
+                        <Icon name="Star" size={18} className="text-pink mt-1" />
+                        <span className="text-black/80">{look}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!selectedCollection} onOpenChange={() => setSelectedCollection(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white">
+          {selectedCollection && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-4xl font-bold text-black mb-2">
+                  {selectedCollection.name}
+                </DialogTitle>
+                <DialogDescription className="text-black/70 text-lg">
+                  {selectedCollection.brand} • {selectedCollection.season}
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-6 mt-6">
+                <div className="bg-gradient-to-r from-gold/20 to-pink/20 rounded-lg p-6">
+                  <Badge className="mb-3 bg-black text-white">{selectedCollection.priceRange}</Badge>
+                  <p className="text-black/80 text-lg leading-relaxed">
+                    {selectedCollection.fullDescription}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-black mb-4 flex items-center gap-2">
+                    <Icon name="ShoppingBag" size={20} />
+                    Вещи из коллекции
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {selectedCollection.items.map((item: any, idx: number) => (
+                      <div key={idx} className="bg-black/5 rounded-lg p-5 hover:bg-gold/10 transition-all">
+                        <div className="flex justify-between items-start">
+                          <p className="text-black font-medium">{item.name}</p>
+                          <Badge className="bg-pink text-white text-sm">{item.price}</Badge>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-black text-white rounded-lg p-6">
+                  <h4 className="text-xl font-bold text-gold mb-3 flex items-center gap-2">
+                    <Icon name="Users" size={20} />
+                    Для кого эта коллекция
+                  </h4>
+                  <p className="text-white/90">
+                    {selectedCollection.targetAudience}
+                  </p>
+                </div>
+
+                <div className="flex gap-4">
+                  <Button className="flex-1 bg-black text-white hover:bg-pink">
+                    <Icon name="Heart" size={18} className="mr-2" />
+                    Добавить в избранное
+                  </Button>
+                  <Button className="flex-1 bg-gold text-black hover:bg-pink hover:text-white">
+                    <Icon name="Share2" size={18} className="mr-2" />
+                    Поделиться
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
