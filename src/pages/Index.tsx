@@ -99,6 +99,51 @@ const Index = () => {
     }
   ];
 
+  const lookbooks = [
+    {
+      title: 'Rick Owens Dark Avant-Garde',
+      brand: 'Rick Owens',
+      season: 'FW 2024',
+      description: 'Драматические черные силуэты с готическими элементами',
+      image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80'
+    },
+    {
+      title: 'Maison Margiela Deconstructed',
+      brand: 'Maison Margiela',
+      season: 'SS 2025',
+      description: 'Артистичная деконструкция классических форм',
+      image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80'
+    },
+    {
+      title: 'Balenciaga Future Tech',
+      brand: 'Balenciaga',
+      season: 'FW 2024',
+      description: 'Футуристичные формы и инновационные материалы',
+      image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80'
+    },
+    {
+      title: 'The Row Quiet Luxury',
+      brand: 'The Row',
+      season: 'SS 2025',
+      description: 'Минималистичная элегантность без излишеств',
+      image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80'
+    },
+    {
+      title: 'Streetwear Meets Haute Couture',
+      brand: 'Off-White',
+      season: 'FW 2024',
+      description: 'Уличная культура на подиуме высокой моды',
+      image: 'https://images.unsplash.com/photo-1558769132-cb1aea1f1c3c?w=800&q=80'
+    },
+    {
+      title: 'Minimalist Monochrome',
+      brand: 'Jil Sander',
+      season: 'SS 2025',
+      description: 'Чистые линии и монохромная палитра',
+      image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&q=80'
+    }
+  ];
+
   const scrollToSection = (section: string) => {
     setActiveSection(section);
     const element = document.getElementById(section);
@@ -116,7 +161,7 @@ const Index = () => {
               FASHION PORTAL
             </h1>
             <div className="hidden md:flex items-center gap-8">
-              {['Главная', 'Бренды', 'Показы', 'Тренды', 'Коллекции'].map((item) => (
+              {['Главная', 'Бренды', 'Показы', 'Тренды', 'Коллекции', 'Лукбуки'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item === 'Главная' ? 'home' : item.toLowerCase())}
@@ -318,6 +363,55 @@ const Index = () => {
                       СМОТРЕТЬ
                     </Button>
                   </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="лукбуки" className="py-24 bg-gradient-to-br from-black via-pink/10 to-black">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-gold text-black">ЛУКБУКИ</Badge>
+            <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Галерея Образов
+            </h3>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              Лучшие образы коллекций 2024-2025
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {lookbooks.map((lookbook, index) => (
+              <Card 
+                key={index}
+                className="bg-white/5 border-gold/30 overflow-hidden group hover:border-pink transition-all duration-500 hover:scale-105"
+              >
+                <div className="relative overflow-hidden aspect-[3/4]">
+                  <img 
+                    src={lookbook.image} 
+                    alt={lookbook.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <Badge className="mb-3 bg-gold text-black text-xs">{lookbook.season}</Badge>
+                    <h4 className="text-2xl font-bold text-white mb-2 group-hover:text-gold transition-colors">
+                      {lookbook.brand}
+                    </h4>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {lookbook.description}
+                    </p>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <Button 
+                    className="w-full bg-white/10 text-white border border-gold hover:bg-gold hover:text-black transition-all duration-300"
+                  >
+                    <Icon name="Eye" size={18} className="mr-2" />
+                    Смотреть полностью
+                  </Button>
                 </CardContent>
               </Card>
             ))}
