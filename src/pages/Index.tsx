@@ -6,7 +6,6 @@ import Icon from '@/components/ui/icon';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
@@ -538,9 +537,9 @@ const Index = () => {
                 <DialogTitle className="text-4xl font-bold text-gold mb-2">
                   {selectedBrand.name}
                 </DialogTitle>
-                <DialogDescription className="text-white/70 text-lg">
+                <p className="text-white/70 text-lg">
                   Основан: {selectedBrand.founded} | {selectedBrand.founder}
-                </DialogDescription>
+                </p>
               </DialogHeader>
               
               <div className="space-y-6 mt-6">
@@ -597,9 +596,9 @@ const Index = () => {
                 <DialogTitle className="text-4xl font-bold text-black mb-2">
                   {selectedShow.designer} {selectedShow.season}
                 </DialogTitle>
-                <DialogDescription className="text-black/70 text-lg">
+                <p className="text-black/70 text-lg">
                   {selectedShow.location} • {selectedShow.date}
-                </DialogDescription>
+                </p>
               </DialogHeader>
               
               <div className="space-y-6 mt-6">
@@ -660,9 +659,9 @@ const Index = () => {
                 <DialogTitle className="text-4xl font-bold text-black mb-2">
                   {selectedCollection.name}
                 </DialogTitle>
-                <DialogDescription className="text-black/70 text-lg">
+                <p className="text-black/70 text-lg">
                   {selectedCollection.brand} • {selectedCollection.season}
-                </DialogDescription>
+                </p>
               </DialogHeader>
               
               <div className="space-y-6 mt-6">
